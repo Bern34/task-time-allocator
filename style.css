@@ -104,3 +104,31 @@ th {
 tbody tr:nth-child(even) {
     background-color: #f8f9fa;
 }
+
+/* ... (giữ nguyên các style cũ) ... */
+
+.error {
+    color: #dc3545;
+    margin-top: 1em;
+    text-align: center;
+    font-weight: bold;
+    min-height: 1.2em;
+}
+
+/* CẬP NHẬT: Style cho dòng thời gian trung bình */
+#average-time-display {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #28a745; /* Màu xanh lá cây */
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5em;
+}
+
+/* ... (giữ nguyên các style còn lại) ... */
