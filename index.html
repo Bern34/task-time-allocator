@@ -9,10 +9,23 @@
 <body>
     <div class="container">
         <h1>Phân Bổ Thời Gian Công Việc</h1>
+
+        <div class="input-group">
+            <label>Quy đổi thời gian (giờ và phút):</label>
+            <div class="converter-group">
+                <input type="number" id="hours-input" placeholder="Giờ" min="0">
+                <span class="unit-label">giờ</span>
+                <input type="number" id="minutes-input" placeholder="Phút" min="0">
+                <span class="unit-label">phút</span>
+                <button id="convert-btn">Quy đổi</button>
+            </div>
+        </div>
+
         <div class="input-group">
             <label for="total-time">Tổng thời gian cho task lớn (phút):</label>
-            <input type="number" id="total-time" min="1" placeholder="Ví dụ: 180">
+            <input type="number" id="total-time" min="1" placeholder="Kết quả từ việc quy đổi" readonly>
         </div>
+        
         <div class="input-group">
             <label for="num-tasks">Số lượng task nhỏ:</label>
             <input type="number" id="num-tasks" min="1" placeholder="Ví dụ: 6">
@@ -30,10 +43,9 @@
 
         <button id="calculate-btn">Tính Toán và Phân Bổ</button>
         <div id="error-message" class="error"></div>
-        
         <p id="average-time-display"></p>
-        
         <hr>
+
         <h2>Bảng Phân Bổ Thời Gian</h2>
         <table id="result-table">
             <thead>
