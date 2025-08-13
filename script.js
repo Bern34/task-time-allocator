@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Lấy các phần tử trên trang
     const totalTimeInput = document.getElementById('total-time');
     const numTasksInput = document.getElementById('num-tasks');
+    // CẬP NHẬT: Lấy các phần tử cho cả 2 thanh trượt
     const minTimeRangeInput = document.getElementById('min-time-range');
     const maxTimeRangeInput = document.getElementById('max-time-range');
     const minRangeValueDisplay = document.getElementById('min-range-value-display');
@@ -10,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultTableBody = document.querySelector('#result-table tbody');
     const errorMessageDiv = document.getElementById('error-message');
 
-    // Cập nhật giá trị hiển thị của thanh trượt
+    // CẬP NHẬT: Thêm sự kiện cho thanh trượt tối thiểu
     minTimeRangeInput.addEventListener('input', () => {
         minRangeValueDisplay.textContent = minTimeRangeInput.value;
     });
@@ -18,18 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
         maxRangeValueDisplay.textContent = maxTimeRangeInput.value;
     });
 
-    // Gắn sự kiện click cho nút tính toán
     calculateBtn.addEventListener('click', () => {
         resultTableBody.innerHTML = '';
         errorMessageDiv.textContent = '';
 
-        // Lấy và chuyển đổi giá trị đầu vào
+        // CẬP NHẬT: Lấy giá trị từ cả 2 thanh trượt
         const totalTime = parseInt(totalTimeInput.value);
         const numTasks = parseInt(numTasksInput.value);
         const minTimePerTask = parseInt(minTimeRangeInput.value);
         const maxTimePerTask = parseInt(maxTimeRangeInput.value);
 
-        // --- KIỂM TRA TÍNH HỢP LỆ CỦA DỮ LIỆU ---
+        // --- CẬP NHẬT TOÀN BỘ LOGIC KIỂM TRA LỖI ---
         if (!totalTime || !numTasks || totalTime <= 0 || numTasks <= 0) {
             errorMessageDiv.textContent = 'Vui lòng nhập đầy đủ và chính xác tổng thời gian và số lượng task.';
             return;
@@ -47,35 +47,40 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // --- THUẬT TOÁN PHÂN BỔ THỜI GIAN ---
+        // --- THUẬT TOÁN PHÂN BỔ THỜI GIAN (Đã được điều chỉnh) ---
         let times = [];
         let remainingTime = totalTime;
 
         for (let i = 0; i < numTasks; i++) {
             const tasksLeft = numTasks - i;
+            
             // Xác định khoảng thời gian ngẫu nhiên hợp lệ cho task hiện tại
-            // Giới hạn dưới: phải đủ lớn để các task còn lại không vượt maxTime
             const lowerBound = Math.max(minTimePerTask, remainingTime - (tasksLeft - 1) * maxTimePerTask);
-            // Giới hạn trên: phải đủ nhỏ để các task còn lại không dưới minTime
             const upperBound = Math.min(maxTimePerTask, remainingTime - (tasksLeft - 1) * minTimePerTask);
             
-            // Nếu là task cuối cùng, nó nhận hết thời gian còn lại
+            let randomTime;
             if (tasksLeft === 1) {
-                times.push(remainingTime);
+                // Task cuối cùng sẽ nhận toàn bộ thời gian còn lại
+                randomTime = remainingTime;
             } else {
-                 // Lấy một giá trị ngẫu nhiên trong khoảng hợp lệ
-                const randomTime = Math.floor(Math.random() * (upperBound - lowerBound + 1)) + lowerBound;
-                times.push(randomTime);
-                remainingTime -= randomTime;
+                // Lấy một giá trị ngẫu nhiên trong khoảng hợp lệ
+                if (lowerBound > upperBound) {
+                    // Xử lý trường hợp không thể phân chia, dù hiếm khi xảy ra nếu các điều kiện trên đã pass
+                    errorMessageDiv.textContent = "Không thể phân chia thời gian với các giới hạn này. Vui lòng thử lại.";
+                    return;
+                }
+                randomTime = Math.floor(Math.random() * (upperBound - lowerBound + 1)) + lowerBound;
             }
+            
+            times.push(randomTime);
+            remainingTime -= randomTime;
         }
         
-        // Hiển thị kết quả ra bảng
         displayResults(times);
     });
 
     function displayResults(times) {
-        // Xáo trộn mảng thời gian để kết quả không bị theo thứ tự
+        // Xáo trộn mảng để kết quả hoàn toàn ngẫu nhiên
         times.sort(() => Math.random() - 0.5);
 
         times.forEach((time, index) => {
