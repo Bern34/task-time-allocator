@@ -27,6 +27,11 @@ h1, h2 {
     margin-bottom: 1.5em;
 }
 
+/* CẬP NHẬT: Thêm style cho khoảng cách thanh trượt */
+.range-container {
+    margin-bottom: 1.2em;
+}
+
 label {
     display: block;
     margin-bottom: 0.6em;
