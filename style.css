@@ -1,62 +1,30 @@
-/* ... (giữ nguyên các style cũ) ... */
-
-.error {
-    color: #dc3545;
-    margin-top: 1em;
-    text-align: center;
-    font-weight: bold;
-    min-height: 1.2em;
-}
-
-/* CẬP NHẬT: Style cho dòng thời gian trung bình */
-#average-time-display {
-    text-align: center;
-    font-size: 1.1em;
-    font-weight: 600;
-    color: #28a745; /* Màu xanh lá cây */
-    margin-top: 1em;
-    margin-bottom: 0;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1.5em;
-}
-
-/* ... (giữ nguyên các style còn lại) ... */
-/* ... (giữ nguyên các style cũ) ... */
-
-/* CẬP NHẬT: Style cho khu vực quy đổi */
-.converter-group {
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #1c1e21;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px; /* Tạo khoảng cách giữa các phần tử */
+    min-height: 100vh;
+    margin: 20px;
 }
 
-.converter-group input {
-    width: 80px; /* Giảm độ rộng của ô nhập giờ/phút */
+.container {
+    background: #ffffff;
+    padding: 2em 2.5em;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 650px;
 }
 
-.converter-group .unit-label {
-    font-weight: 500;
+h1, h2 {
+    text-align: center;
+    color: #0d6efd;
 }
 
-.converter-group button {
-    width: auto; /* Để nút co lại vừa với chữ */
-    padding: 0.75em 1em;
-    font-size: 0.9em;
-    background-color: #6c757d; /* Màu xám */
-}
-
-.converter-group button:hover {
-    background-color: #5a6268;
-}
-
-/* CẬP NHẬT: Style cho ô readonly để người dùng biết là không thể nhập */
-input[readonly] {
-    background-color: #e9ecef;
-    cursor: not-allowed;
+.input-group {
+    margin-bottom: 1.5em;
 }
 
 label {
@@ -66,5 +34,68 @@ label {
     color: #495057;
 }
 
-/* ... (giữ nguyên các style còn lại) ... */
+input[type="number"] {
+    width: 100%;
+    padding: 0.75em;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
 
+input[type="number"]:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+}
+
+button {
+    width: 100%;
+    padding: 0.8em 1em;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #0b5ed7;
+}
+
+.error {
+    color: #dc3545;
+    margin-top: 1em;
+    text-align: center;
+    font-weight: bold;
+    min-height: 1.2em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5em;
+}
+
+th, td {
+    padding: 0.9em;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
