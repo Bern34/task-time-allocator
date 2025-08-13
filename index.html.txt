@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công Cụ Chia Thời Gian Task</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Phân Bổ Thời Gian Công Việc</h1>
+        <div class="input-group">
+            <label for="total-time">Tổng thời gian cho task lớn (phút):</label>
+            <input type="number" id="total-time" min="1" placeholder="Ví dụ: 180">
+        </div>
+        <div class="input-group">
+            <label for="num-tasks">Số lượng task nhỏ:</label>
+            <input type="number" id="num-tasks" min="1" placeholder="Ví dụ: 6">
+        </div>
+        <div class="input-group">
+            <label for="time-range">Giới hạn thời gian tối đa mỗi task (phút): <span id="range-value-display">50</span></label>
+            <input type="range" id="time-range" min="5" max="120" value="50">
+        </div>
+        <button id="calculate-btn">Tính Toán và Phân Bổ</button>
+        <div id="error-message" class="error"></div>
+        <hr>
+        <h2>Bảng Phân Bổ Thời Gian</h2>
+        <table id="result-table">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Thời Gian (phút)</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
